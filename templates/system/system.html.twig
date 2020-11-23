@@ -1,0 +1,65 @@
+{% extends 'system/base.html.twig' %}
+
+{% block content %}
+<section id="content">
+    <div class="container itens">
+        <div class="row">
+            <div class="col-lg-3 col-sm-3 col-xs-12">
+            </div>
+            <div class="col-lg-6 col-sm-6 col-xs-12">
+                <div class="input-group input-group-sm">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-search"></i></span>
+                    </div>
+                    <input type="text" class="form-control" id="search-products" placeholder="nome do produto, localiazação">
+                </div>
+                <div style="width: 100%; background-color: rgba(200,200,200,.9); border-radius:5px; z-index:10; position:absolute;" id="result">
+
+                </div>
+            </div>
+            <div class="col-lg-3 col-sm-3 col-xs-12">
+            </div>
+        </div>
+        <div class="row">
+            {% for item in products %}
+                <div class="col-lg-4 col-sm-4 col-xs-12 align-items-stretch" style="padding-top: 40px;">
+                    <div class="member">
+                        <div class="pic" style="background-image: url('http://localhost/data/{{item.image}}');"></div>
+                        <div class="member-info">
+                            <h4>{{item.name}}</h4>
+                            <h5 style="color: red;">{{item.price}}</h5>
+                            <span style="padding-left: 10px; padding-right: 10px;">
+                                {% set limite = 1 %}
+                                {% set break = false %}
+                                {% for zone in item.zones %}
+                                    {% if limite <= 3 and not break %}
+                                        {{zone}},
+                                        {% set limite = limite + 1 %}
+                                    {% else %}
+                                        mais localizações...
+                                        {% set break = true %}
+                                    {% endif %}
+                                {% endfor %}
+                            </span>
+                            <div class="social">
+                                {% if item.favorite == true %}
+                                    <a href="#" style="color:red; pointer-events: none;"><i class="fas fa-heart"></i></a>    
+                                {% else %}
+                                    <a href="{{ path('system_favorite_add',{id:item.id}) }}" class="favorite_add"><i class="fas fa-heart"></i></a>    
+                                {% endif %}
+                                <a href="#"><i class="fas fa-info-circle"></i></a>
+                                <a href="{{ path('system_prequest_confirm',{id:item.id}) }}" class="buy"><i class="fas fa-money-bill-wave"></i> Comprar</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% if prequest %}
+        <div class="text-center align-middle openprequest pt-2">
+            <a href="{{ path('system_prequest') }}">Acompanhar Pedidos</a>
+        </div>
+    {% endif %}
+</section>
+{% endblock %}

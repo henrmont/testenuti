@@ -1,0 +1,37 @@
+<!-- The Modal -->
+<div class="modal fade" id="editAirplane">
+    <div class="modal-dialog">
+        <form action="{{ path('system_airplane_update') }}">
+        <div class="modal-content modal-lg">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Editar Aeronave</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+            <input type="hidden" id="editAirplaneId" name="editAirplaneId">
+            <div class="form-group">
+                <label for="usr">Nome:</label>
+                <input type="text" class="form-control" id="editAirplaneName" name="editAirplaneName">
+            </div>
+            <div class="form-group">
+            <label for="cities">Selecione a cidade:</label>
+            <select class="form-control" id="cities" name="editAirplaneCities">
+                {% for item in cities %}
+                    <option value="{{ item.id }}">{{ item.name }}</option>
+                {% endfor %}
+            </select>
+            </div>
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-primary">Editar</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+        </form>
+    </div>
+</div>

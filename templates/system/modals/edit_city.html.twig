@@ -1,0 +1,29 @@
+<!-- The Modal -->
+<div class="modal fade" id="editCity">
+    <div class="modal-dialog">
+        <form action="{{ path('system_city_update') }}">
+        <div class="modal-content modal-lg">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Editar Cidade</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+            <input type="hidden" id="editCityId" name="editCityId">
+            <div class="form-group">
+                <label for="usr">Nome:</label>
+                <input type="text" class="form-control" id="editCityName" name="editCityName">
+            </div>
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-primary">Editar</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,82 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}NUTI{% endblock %}
+
+{% block body %}
+<nav class="navbar navbar-expand-lg navbar-light fixed-top" style="background-color: rgba(10,10,10,.8);">
+  <a class="navbar-brand pr-5 pl-5" href="#"><img src="{{ asset('build/img/logo.png') }}" style="height: 50px;"></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav ml-auto">
+      {% if is_granted('ROLE_ADMIN') %}
+      <li class="nav-item active text-center ml-auto mr-auto">
+        <a href="{{ path('admin_users') }}" class="menu-link" name="menu-link-1">
+        <div class="text-center menu-icon" name="menu-icon-1">
+            <i class="fas fa-users"></i>
+        </div>
+        <div class="text-center">
+            <small class="menu-font" name="menu-font-1">Usuários</small>
+        </div>
+        </a>
+      </li>
+      <li class="nav-item active text-center ml-auto mr-auto">
+        <a href="#" class="menu-link" name="menu-link-2">
+        <div class="text-center menu-icon" name="menu-icon-2">
+            <i class="fas fa-book"></i>
+        </div>
+        <div class="text-center">
+            <small class="menu-font" name="menu-font-2">RIPD</small>
+        </div>
+        </a>
+      </li>
+      {% endif %}
+      {% if usercontrol != 0  %}
+      <li class="nav-item active text-center ml-auto mr-auto">
+        <a href="{{ path('system_city') }}" class="menu-link" name="menu-link-3">
+        <div class="text-center menu-icon" name="menu-icon-3">
+            <i class="fas fa-globe"></i>
+        </div>
+        <div class="text-center">
+            <small class="menu-font" name="menu-font-3">Cidades</small>
+        </div>
+        </a>
+      </li>
+      <li class="nav-item active text-center ml-auto mr-auto">
+        <a href="{{ path('system_airplane') }}" class="menu-link" name="menu-link-4">
+        <div class="text-center menu-icon" name="menu-icon-4">
+            <i class="fas fa-plane"></i>
+        </div>
+        <div class="text-center">
+            <small class="menu-font" name="menu-font-4">Aeronaves</small>
+        </div>
+        </a>
+      </li>
+      <li class="nav-item active text-center ml-auto mr-auto">
+        <a href="{{ path('system_voo') }}" class="menu-link" name="menu-link-5">
+        <div class="text-center menu-icon" name="menu-icon-5">
+            <i class="fas fa-plane-departure"></i>
+        </div>
+        <div class="text-center">
+            <small class="menu-font" name="menu-font-5">Voos</small>
+        </div>
+        </a>
+      </li>
+      {% endif %}
+      <li class="nav-item active text-center ml-auto mr-auto">
+        <a href="{{ path('app_logout') }}" class="menu-link" name="menu-link-6">
+        <div class="text-center menu-icon" name="menu-icon-6">
+            <i class="fas fa-door-open"></i>
+        </div>
+        <div class="text-center">
+            <small class="menu-font" name="menu-font-6">Exit</small>
+        </div>
+        </a>
+      </li>
+    </ul>
+  </div>
+</nav>
+{% block content %}{% endblock %}
+{% endblock %}

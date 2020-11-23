@@ -1,0 +1,28 @@
+{% extends 'system/base.html.twig' %}
+
+{% block content %}
+<section id="content">
+    <div class="container">
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#newCity">
+        Nova Cidade
+    </button>
+    {% include "system/modals/new_city.html.twig" %}
+    {% for item in cities %}
+        <div class="row">
+            <div class="col-lg-1">{{ item.id }}</div>
+            <div class="col-lg-4">{{ item.name }}</div>
+            <div class="col-lg-2">
+                <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#editCity" data-id="{{ item.id }}" data-name="{{ item.name }}">
+                    Editar Cidade
+                </button>    
+            </div>
+            <div class="col-lg-2">
+                <a href="{{ path('system_city_remove', {id:item.id}) }}" class="btn btn-danger btn-sm">Excluir Cidade</a>
+            </div>
+        </div>
+    {% endfor %}
+    {% include "system/modals/edit_city.html.twig" %}
+    </div>
+</section>
+{% endblock %}
+

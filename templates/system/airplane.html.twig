@@ -1,0 +1,29 @@
+{% extends 'system/base.html.twig' %}
+
+{% block content %}
+<section id="content">
+    <div class="container">
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#newAirplane">
+        Nova Aeronave
+    </button>
+    {% include "system/modals/new_airplane.html.twig" %}
+    {% for item in airplanes %}
+        <div class="row">
+            <div class="col-lg-1">{{ item.id }}</div>
+            <div class="col-lg-2">{{ item.name }}</div>
+            <div class="col-lg-4">{{ item.city }}</div>
+            <div class="col-lg-2">
+                <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#editAirplane" data-id="{{ item.id }}" data-name="{{ item.name }}">
+                    Editar Aeronave
+                </button>    
+            </div>
+            <div class="col-lg-2">
+                <a href="{{ path('system_airplane_remove', {id:item.id}) }}" class="btn btn-danger btn-sm">Excluir Aeronave</a>
+            </div>
+        </div>
+    {% endfor %}
+    {% include "system/modals/edit_airplane.html.twig" %}
+    </div>
+</section>
+{% endblock %}
+

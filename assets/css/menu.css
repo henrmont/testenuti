@@ -1,0 +1,20 @@
+.menu-link {
+    display: block;
+    width: 90px;
+}
+
+.menu-link:hover {
+    text-decoration: none;
+}
+
+.menu-link .menu-icon {
+    color: rgb(100,100,100);
+    font-size: 25px;
+    transition: linear .3s;
+}
+
+.menu-link .menu-font {
+    color: rgb(100,100,100);
+    font-size: 12px;
+    transition: linear .3s;
+}

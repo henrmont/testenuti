@@ -1,0 +1,34 @@
+{% extends 'system/base.html.twig' %}
+
+{% block content %}
+<section id="content">
+    <div class="container">
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#newVoo">
+        Novo Voo
+    </button>
+    {% include "system/modals/new_voo.html.twig" %}
+    {% for item in voos %}
+        <div class="row mt-2">
+            <div class="col-lg-1">{{ item.id }}</div>
+            <div class="col-lg-1">{{ item.airplane }}</div>
+            <div class="col-lg-1">{{ item.cityFrom }}</div>
+            <div class="col-lg-1">{{ item.cityTo }}</div>
+            <div class="col-lg-1">{{ item.departure|date("m/d/Y") }}</div>
+            <div class="col-lg-1">{{ item.time }}h</div>
+                {% if item.status %}
+                    <div class="col-lg-2">
+                        <a href="{{ path('system_voo_finish',{id:item.id,airplane:item.airplane,local:item.cityTo}) }}" class="btn btn-success btn-sm">Finalizar Voo</a>  
+                    </div>
+                    <div class="col-lg-2">
+                        <a href="{{ path('system_voo_remove',{id:item.id,airplane:item.airplane}) }}" class="btn btn-danger btn-sm">Excluir Voo</a>
+                    </div>
+                {% else %}
+                    Voo Finalizado
+                {% endif %}
+        </div>
+    {% endfor %}
+    {# {% include "system/modals/edit_city.html.twig" %} #}
+    </div>
+</section>
+{% endblock %}
+
