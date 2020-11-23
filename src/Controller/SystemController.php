@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Airplane;
 use App\Entity\City;
+use App\Entity\Ripd;
 use App\Entity\Voo;
 use App\Form\AirplaneType;
 use App\Form\CityType;
@@ -55,6 +56,14 @@ class SystemController extends AbstractController
                 $city->setCreatedAt(new \DateTime('now'));
                 $city->setModifiedAt(new \DateTime('now'));
 
+                $ripd = new Ripd();
+                $ripd->setControl($this->getUser()->getControl());
+                $ripd->setOperator($this->getUser()->getId());
+                $ripd->setReason('Razão do relatório');
+                $ripd->setCreatedAt(new \DateTime('now'));
+
+                $em->persist($ripd);
+
                 $em->persist($city);
                 $em->flush();
     
@@ -83,6 +92,14 @@ class SystemController extends AbstractController
             $city->setName($request->get('editCityName'));
             $city->setModifiedAt(new \DateTime('now'));
 
+            $ripd = new Ripd();
+            $ripd->setControl($this->getUser()->getControl());
+            $ripd->setOperator($this->getUser()->getId());
+            $ripd->setReason('Razão do relatório');
+            $ripd->setCreatedAt(new \DateTime('now'));
+
+            $em->persist($ripd);
+
             $em->flush();
     
             return $this->redirectToRoute('system_city');
@@ -99,6 +116,14 @@ class SystemController extends AbstractController
         try{
             $em = $this->getDoctrine()->getManager();
             $city = $em->getRepository(City::class)->find($id);
+
+            $ripd = new Ripd();
+            $ripd->setControl($this->getUser()->getControl());
+            $ripd->setOperator($this->getUser()->getId());
+            $ripd->setReason('Razão do relatório');
+            $ripd->setCreatedAt(new \DateTime('now'));
+
+            $em->persist($ripd);
 
             $em->remove($city);
             $em->flush();
@@ -131,6 +156,14 @@ class SystemController extends AbstractController
                 $airplane->setCreatedAt(new \DateTime('now'));
                 $airplane->setModifiedAt(new \DateTime('now'));
 
+                $ripd = new Ripd();
+                $ripd->setControl($this->getUser()->getControl());
+                $ripd->setOperator($this->getUser()->getId());
+                $ripd->setReason('Razão do relatório');
+                $ripd->setCreatedAt(new \DateTime('now'));
+
+                $em->persist($ripd);
+
                 $em->persist($airplane);
                 $em->flush();
     
@@ -161,6 +194,14 @@ class SystemController extends AbstractController
             $airplane->setLocal($request->get('editAirplaneCities'));
             $airplane->setModifiedAt(new \DateTime('now'));
 
+            $ripd = new Ripd();
+            $ripd->setControl($this->getUser()->getControl());
+            $ripd->setOperator($this->getUser()->getId());
+            $ripd->setReason('Razão do relatório');
+            $ripd->setCreatedAt(new \DateTime('now'));
+
+            $em->persist($ripd);
+
             $em->flush();
     
             return $this->redirectToRoute('system_airplane');
@@ -177,6 +218,14 @@ class SystemController extends AbstractController
         try{
             $em = $this->getDoctrine()->getManager();
             $airplane = $em->getRepository(Airplane::class)->find($id);
+
+            $ripd = new Ripd();
+            $ripd->setControl($this->getUser()->getControl());
+            $ripd->setOperator($this->getUser()->getId());
+            $ripd->setReason('Razão do relatório');
+            $ripd->setCreatedAt(new \DateTime('now'));
+
+            $em->persist($ripd);
 
             $em->remove($airplane);
             $em->flush();
@@ -215,6 +264,14 @@ class SystemController extends AbstractController
                 $voo->setModifiedAt(new \DateTime('now'));
 
                 $airplane->setIsValid(false);
+
+                $ripd = new Ripd();
+                $ripd->setControl($this->getUser()->getControl());
+                $ripd->setOperator($this->getUser()->getId());
+                $ripd->setReason('Razão do relatório');
+                $ripd->setCreatedAt(new \DateTime('now'));
+
+                $em->persist($ripd);
 
                 $em->persist($airplane);
                 $em->persist($voo);
@@ -276,6 +333,14 @@ class SystemController extends AbstractController
             $airplane->setLocal($local);
             $voo->setStatus(false);
 
+            $ripd = new Ripd();
+            $ripd->setControl($this->getUser()->getControl());
+            $ripd->setOperator($this->getUser()->getId());
+            $ripd->setReason('Razão do relatório');
+            $ripd->setCreatedAt(new \DateTime('now'));
+
+            $em->persist($ripd);
+
             $em->flush();
     
             return $this->redirectToRoute('system_voo');
@@ -296,6 +361,14 @@ class SystemController extends AbstractController
 
             $airplane->setIsValid(true);
             $voo->setStatus(false);
+
+            $ripd = new Ripd();
+            $ripd->setControl($this->getUser()->getControl());
+            $ripd->setOperator($this->getUser()->getId());
+            $ripd->setReason('Razão do relatório');
+            $ripd->setCreatedAt(new \DateTime('now'));
+
+            $em->persist($ripd);
 
             $em->remove($voo);
             $em->flush();
